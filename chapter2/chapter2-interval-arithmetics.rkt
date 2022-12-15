@@ -33,3 +33,21 @@
                  (- (upper-bound x) (upper-bound y))))
 ;check 2.8
 (sub-interval one-two zero-one)
+
+(define (make-center-width c w)
+  (make-interval (- c w) (+ c w)))
+
+(define (center i)
+  (/ (+ (lower-bound i) (upper-bound i)) 2))
+(define (width i)
+  (/ (- (upper-bound i) (lower-bound i)) 2))
+
+;2.12
+
+(define (make-center-percent s w)
+  (make-interval (- s (* w (/ s 100))) (+ s (* w (/ s 100)))))
+(define (percent x)
+  (* 100 (/ (width x) (center x))))
+(define test-interval (make-center-percent 100 10))
+(percent test-interval)
+
